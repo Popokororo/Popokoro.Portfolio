@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ポポコロ | Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+    <style>body[data-role="public"] #editTab { display: none !important; }</style>
+</head>
+
+<body data-role="public">
+    <!-- ========================================
+         ヘッダー
+    ======================================== -->
+    <header class="topbar">
+        <a href="#" class="site-logo" id="siteLogo">
+            ポポコロ
+        </a>
+
+        <nav class="top-nav" aria-label="画面操作">
+            <button
+                type="button"
+                class="edit-icon-button"
+                id="editTab"
+                aria-label="編集画面を開く"
+                title="編集画面"
+            >
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25Z" />
+                    <path d="m14.06 4.19 1.77-1.77a1.5 1.5 0 0 1 2.12 0l1.63 1.63a1.5 1.5 0 0 1 0 2.12l-1.77 1.77-3.75-3.75Z" />
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+
+    <!-- ========================================
+         公開画面
+    ======================================== -->
+    <main id="publicView" class="public-view">
+
+        <!-- メイン画像 -->
+        <section class="hero-section">
+            <div class="hero-image-wrap">
+                <img
+                    id="heroImage"
+                    class="hero-image"
+                    src=""
+                    alt="メインビジュアル"
+                >
+
+                <div id="heroPlaceholder" class="image-placeholder">
+                    メイン画像はまだ設定されていません
+                </div>
+            </div>
+        </section>
+
+
+        <!-- プロフィール -->
+        <section class="profile-section">
+            <div class="profile-avatar-wrap">
+                <img
+                    id="profileAvatar"
+                    class="profile-avatar"
+                    src=""
+                    alt="プロフィール画像"
+                >
+
+                <div
+                    id="avatarPlaceholder"
+                    class="avatar-placeholder"
+                >
+                    P
+                </div>
+            </div>
+
+            <div class="profile-text">
+                <p class="profile-label">PROFILE</p>
+
+                <h1 id="profileName">ポポコロ</h1>
+
+                <p
+                    id="profileActivity"
+                    class="profile-activity"
+                ></p>
+
+                <p
+                    id="profileIntro"
+                    class="profile-intro"
+                ></p>
+
+                <div
+                    id="socialLinks"
+                    class="social-links"
+                ></div>
+            </div>
+        </section>
+
+
+        <!-- 作品一覧 -->
+        <section class="collection-section">
+            <div class="collection-heading">
+                <div>
+                    <p
+                        id="collectionEyebrow"
+                        class="section-eyebrow"
+                    >
+                        SELECTED COLLECTION
+                    </p>
+
+                    <h2 id="collectionHeadline">
+                        Illustration✧
+                    </h2>
+                </div>
+            </div>
+
+            <!-- カテゴリフィルター -->
+            <div
+                id="categoryFilters"
+                class="category-filters"
+            ></div>
+
+            <!-- 作品グリッド -->
+            <div
+                id="worksGrid"
+                class="works-grid"
+            ></div>
+
+            <!-- 作品がない場合 -->
+            <p
+                id="emptyWorksMessage"
+                class="empty-message hidden"
+            >
+                作品はまだ登録されていません。
+            </p>
+        </section>
+
+
+        <!-- フッター -->
+        <footer class="site-footer">
+            <p id="footerText">© ポポコロ</p>
+        </footer>
+    </main>
+
+
+
+    <!-- ========================================
+         編集画面
+    ======================================== -->
+    <main id="editView" class="edit-view hidden">
+
+        <aside class="editor-sidebar">
+            <p class="sidebar-heading">PORTFOLIO EDITOR</p>
+
+            <button
+                type="button"
+                class="sidebar-button active"
+                data-panel="profile"
+            >
+                プロフィール
+            </button>
+
+            <button
+                type="button"
+                class="sidebar-button"
+                data-panel="works"
+            >
+                作品管理
+            </button>
+
+            <button
+                type="button"
+                class="sidebar-button"
+                data-panel="categories"
+            >
+                カテゴリ管理
+            </button>
+
+            <button
+                type="button"
+                class="sidebar-button"
+                data-panel="design"
+            >
+                デザイン設定
+            </button>
+
+            <div class="sidebar-bottom">
+                <p class="sidebar-note">
+                    編集内容はブラウザに保存されます。
+                </p>
+
+                <button
+                    type="button"
+                    id="resetButton"
+                    class="secondary-button"
+                >
+                    初期状態に戻す
+                </button>
+            </div>
+        </aside>
+
+
+        <section class="editor-main">
+            <div class="editor-header">
+                <div>
+                    <p class="section-eyebrow">EDIT PORTFOLIO</p>
+                    <h1 id="editorTitle">プロフィール</h1>
+                </div>
+
+                <div class="editor-header-actions">
+                    <button
+                        type="button"
+                        id="previewButton"
+                        class="secondary-button"
+                    >
+                        プレビュー
+                    </button>
+
+                    <button
+                        type="button"
+                        id="publishButton"
+                        class="primary-button"
+                    >
+                        公開データを更新
+                    </button>
+
+                    <button
+                        type="button"
+                        id="exportButton"
+                        class="export-button"
+                    >
+                        データを書き出し
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- JavaScriptで編集パネルを表示 -->
+            <div id="editorContent"></div>
+
+
+            <!-- 保存状態 -->
+            <p
+                id="editorStatus"
+                class="editor-status"
+                aria-live="polite"
+            ></p>
+        </section>
+    </main>
+
+
+
+    <!-- ========================================
+         作品拡大表示モーダル
+    ======================================== -->
+    <div
+        id="modalRoot"
+        class="modal-root hidden"
+        role="dialog"
+        aria-modal="true"
+        aria-label="作品の拡大表示"
+    >
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+
+        <div class="modal-content">
+            <button
+                type="button"
+                id="modalClose"
+                class="modal-close"
+                aria-label="閉じる"
+            >
+                ×
+            </button>
+
+            <img
+                id="modalImage"
+                class="modal-image"
+                src=""
+                alt=""
+            >
+
+            <div class="modal-caption">
+                <h2 id="modalTitle"></h2>
+                <p id="modalCategory"></p>
+                <p id="modalDate" class="modal-date hidden"></p>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ========================================
+         保存データファイル
+         script.js より先に読み込む
+    ======================================== -->
+    <script src="portfolio-data.js"></script>
+
+    <!-- サイトの動作 -->
+    <script src="script.js"></script>
+</body>
+</html>
