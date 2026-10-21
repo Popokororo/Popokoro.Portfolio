@@ -33,7 +33,7 @@ const defaults = {
     weight: "400",
     italic: false,
 
-    headline: "Illustration✧",
+    headline: "Illustration",
     eyebrow: "SELECTED COLLECTION",
     filterAll: "ALL",
     modalClose: "閉じる"
